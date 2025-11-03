@@ -41,28 +41,36 @@ ________________________________________
 ### ⚙️ _**Deployment Steps**_
 
 1. Build and Push Docker Image
-docker build -t 2048-eks:v1 ./app
-docker tag 2048-eks:v1 <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/2048-eks:v1
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com
-docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/2048-eks:v1
+
+        docker build -t 2048-eks:v1 ./app
+        docker tag 2048-eks:v1 <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/2048-eks:v1
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com
+        docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/2048-eks:v1
+
 2. Create EKS Cluster
-eksctl create cluster \
-  --name 2048-cluster \
-  --region us-east-1 \
-  --zones us-east-1a \
-  --nodegroup-name ng-1 \
-  --node-type t3.small \
-  --nodes 2 \
-  --nodes-min 1 \
-  --nodes-max 2 \
-  --managed
+
+        eksctl create cluster \
+          --name 2048-cluster \
+          --region us-east-1 \
+          --zones us-east-1a \
+          --nodegroup-name ng-1 \
+          --node-type t3.small \
+          --nodes 2 \
+          --nodes-min 1 \
+          --nodes-max 2 \
+          --managed
+
 3. Deploy Application on Kubernetes
-kubectl create namespace 2048-game
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-kubectl apply -f hpa.yaml
+
+        kubectl create namespace 2048-game
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
+        kubectl apply -f hpa.yaml
+
 4. Access the App
-kubectl get svc -n 2048-game
+
+        kubectl get svc -n 2048-game
+   
 •	Open the EXTERNAL-IP in your browser.
 
 •	The 2048 game should load successfully.
