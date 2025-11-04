@@ -4,6 +4,9 @@ ________________________________________
 
 ## 2048 Game Deployment on AWS EKS
 
+2048 game opened in browser
+<img width="1920" height="1080" alt="10" src="https://github.com/user-attachments/assets/950998b0-e98e-4038-965a-6a624a3f7f8b" />
+
 ________________________________________
 
 ### _**Project Overview**_
@@ -12,7 +15,7 @@ This project demonstrates containerizing a web application (2048 game) with Dock
 
 ________________________________________
 
-### 🏗️ _**Architecture**_
+### _**Architecture**_
 
 Docker (2048 App) --> ECR Repo --> EKS Cluster --> Deployment --> Service (LoadBalancer) --> Public Web Access
 •	Docker: Containerizes the 2048 static web app.
@@ -27,7 +30,7 @@ Docker (2048 App) --> ECR Repo --> EKS Cluster --> Deployment --> Service (LoadB
 
 ________________________________________
 
-### 📂 _**Project Structure**_
+### _**Project Structure**_
 
     goal3-eks/
     ├─ app/               # 2048 source code (HTML/CSS/JS)
@@ -38,7 +41,7 @@ ________________________________________
     
 ________________________________________
 
-### ⚙️ _**Deployment Steps**_
+### _**Deployment Steps**_
 
 1. Build and Push Docker Image
 
@@ -77,19 +80,13 @@ ________________________________________
 
 ________________________________________
 
-### 📈 _**Scaling**_
+### _**Scaling**_
 
 •	HPA is configured to maintain 50% CPU utilization, scaling pods between 2 and 5 replicas automatically.
 
 ________________________________________
 
-### 🖼️ _**Screenshots**_
-
-(Add screenshots of the 2048 game running and HPA metrics)
-
-________________________________________
-
-### 🏗️ _**Project Architecture**_
+### _**Project Architecture**_
 
 High-Level Overview
 
@@ -125,7 +122,7 @@ Flow Summary:
 
 ________________________________________
 
-### ⚙️ _**Key Kubernetes Files**_
+### _**Key Kubernetes Files**_
 
 deployment.yaml
 
@@ -171,7 +168,7 @@ Exposes the app via LoadBalancer:
           
 ________________________________________
 
-### 🔍 _**Troubleshooting Notes**_(Issue - Cause - Solution)
+### _**Troubleshooting Notes**_(Issue - Cause - Solution)
 
 * No basic auth credentials when pushing to ECR - Not logged in to ECR - Run `aws ecr get-login-password and docker login.
 * LoadBalancer IP not showing	- EKS provisioning delay - Waited some time, Run kubectl get svc -n 2048-game -w
@@ -179,7 +176,7 @@ ________________________________________
 
 ________________________________________
 
-### 🧠 _**Key Learnings**_
+### _**Key Learnings**_
 
 •	Hands-on with Kubernetes deployments and services on AWS EKS
 •	Experience with Docker image builds and ECR authentication
@@ -187,7 +184,7 @@ ________________________________________
 •	End-to-end knowledge of containerized workloads on AWS
 
 ________________________________________
-### 📂 _**Repository Structure**_
+### _**Repository Structure**_
 
     2048-eks/
     ├── Dockerfile
@@ -198,16 +195,26 @@ ________________________________________
     
 ________________________________________
 
-### 📸 _**Screenshots**_
+### _**Screenshots**_
 
-1.	ECR repository page with uploaded image
-2.	kubectl get pods -n 2048-game output
-3.	LoadBalancer service with public IP
-4.	2048 game opened in browser
+ECR repository
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/1596a321-a2ec-47bb-b27b-990a292e335d" />
+
+EKS Cluster
+<img width="1920" height="1080" alt="4" src="https://github.com/user-attachments/assets/34996625-b06b-4d5b-b5d8-21e3b6c742f4" />
+
+kubectl get pods -n 2048-game output
+<img width="1920" height="1080" alt="8" src="https://github.com/user-attachments/assets/a6402457-9b16-4ce7-911a-d203a363a0b3" />
+
+LoadBalancer service with public IP
+<img width="1920" height="1080" alt="9" src="https://github.com/user-attachments/assets/c68a4229-7506-4613-8af7-ffd1ea8a82a1" />
+
+CloudWatch Container Insights
+<img width="1920" height="1080" alt="11" src="https://github.com/user-attachments/assets/b451ad2c-4b3c-4916-874f-ab0e7a572515" />
 
 ________________________________________
 
-### 📘 _**References**_
+### _**References**_
 
 •	Kubernetes Official Docs
 •	Amazon EKS Workshop
